@@ -9,5 +9,5 @@ if (localStorage.getItem("cash")) {
     document.getElementById("balance").innerHTML = localStorage.getItem("cash")
 }
 else {
-    document.getElementById("balance").innerHTML = "Баланса нет, ты нищук, съеби нахуй или жми на кнопку"
+    document.getElementById("balance").innerHTML = "0"
 }
