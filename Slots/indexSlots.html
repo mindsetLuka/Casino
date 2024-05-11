@@ -42,7 +42,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">Credits</span>
                 </div>
-                <input class="form-control" type="number" id="balance" min="1" max="5000"/>
+                <input class="form-control" type="number" id="balance" min="1" max="5000" disabled/>
                 <div class="input-group-append">
                     <span class="input-group-text"><i class="fas fa-dollar-sign green"></i></span>
                 </div>
@@ -76,7 +76,7 @@
     </div>
     <div class="row justify-content-center my-3">
         <div class="col col-auto">
-            <button class="btn btn-warning w-auto" type="button" id="checkout">
+            <button class="btn btn-warning w-auto" type="button" id="checkout" style="display: none;">
                 <i class="fas fa-money-bill-alt"></i> CHECKOUT
             </button>
             <button class="btn btn-primary w-auto" type="button" data-toggle="modal" data-target="#payTable">
@@ -240,6 +240,49 @@
         },
     };
 
+    const LS_KEY_CASH = "cash";
+    const INITIAL_VALUE = 1000;
+    const playerBalanceStorage = {
+        initializeBalance: function () {
+            if (localStorage.getItem(LS_KEY_CASH) === null) {
+            localStorage.setItem(LS_KEY_CASH, INITIAL_VALUE);
+            }
+            this.displayBalance();
+        },
+
+        getBalance: function () {
+            const balance = localStorage.getItem(LS_KEY_CASH);
+            return balance ? parseInt(balance, 10) : INITIAL_VALUE;
+        },
+
+        setBalance: function (newBalance) {
+            localStorage.setItem(LS_KEY_CASH, newBalance);
+            this.displayBalance();
+        },
+
+        updateBalance: function (amount) {
+            const currentBalance = this.getBalance();
+            const updatedBalance = currentBalance + amount;
+            localStorage.setItem(LS_KEY_CASH, updatedBalance);
+            this.displayBalance();
+        },
+
+        displayBalance: function() {
+            conf.player.money = playerBalanceStorage.getBalance();
+    }
+    };
+
+    playerBalanceStorage.initializeBalance();
+
+    window.addEventListener('DOMContentLoaded', () => {
+        playerBalanceStorage.displayBalance();
+    });
+
+    window.addEventListener('storage', () => {
+        playerBalanceStorage.displayBalance();
+    });
+
+   
     //Resource loader
     Resources('./src/img/BAR.png', './src/img/lemon.png', './src/img/blueberry.png', './src/img/7.png', './src/img/Cherry.png').onLoad(
         function (resources, names) {
@@ -274,7 +317,6 @@
                 conf.mode.onchange = slot.setMode;
                 conf.where.onchange = slot.setMode;
                 conf.what.onchange = slot.setMode;
-                conf.balance.onchange = slot.setCredits;
                 conf.balance.value = conf.player.money;
                 conf.autoBtn.onclick = slot.autoToggle;
 

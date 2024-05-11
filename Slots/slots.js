@@ -33,7 +33,7 @@ const Slot = function (canvas) {
 
             return;
         }
-        conf.player.money -= conf.bet.value * 1;
+        playerBalanceStorage.updateBalance(-conf.bet.value * 1)
         conf.balance.value = conf.player.money;
         currentSpin = [];
         reels.forEach((reel) => {
@@ -203,7 +203,7 @@ const Slot = function (canvas) {
         });
 
         let totalSum = sum.top + sum.middle + sum.bottom;
-        conf.player.money += totalSum;
+        playerBalanceStorage.updateBalance(totalSum)
         conf.balance.value = conf.player.money;
         if (totalSum !== 0) {
             conf.sound.win.play();
