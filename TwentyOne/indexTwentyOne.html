@@ -11,17 +11,15 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="icon" href="../Slots/src/img/BAR.png"/>
     <link rel="stylesheet" href="styleTwentyOne.css">
 </head>
 <body>
-<!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
 <div class="container">
     <div class="player">
         <div class="player-stats">
-            <p><span id="player-title">Player</span> | <span id="pbank">Money: </span> | <span id="cbet">Bet: </span></p>
-            <p><span id="player-cards-el">Cards: </span> | <span id="player-sum-el">Value: </span></p>
+            <p><span id="player-title">Игрок</span> | <span id="pbank">Баланс: </span> | <span id="cbet">Ставка: </span></p>
+            <p><span id="player-cards-el">Карты: </span> | <span id="player-sum-el">Счет: </span></p>
         </div>
         <div class="player-cards">
             <img src="" id="pcard0">
@@ -38,11 +36,11 @@
         </div>
     </div>
     <div id="message-el">
-        Хочешь сыграть?
+        Выбери ставку, чтобы начать!
     </div>
     <div class="dealer">
         <div class="dealer-stats">
-            <span id="dealer-title">Dealer</span> | <span id="dealer-cards-el">Cards: </span> | <span id="dealer-sum-el">Value: </span>
+            <span id="dealer-title">Дилер</span> | <span id="dealer-cards-el">Карты: </span> | <span id="dealer-sum-el">Счет: </span>
         </div>
         <div class="dealer-cards">
             <img src="" id="dcard0">
@@ -73,20 +71,20 @@
     </div>
     <div class="stats">
         <div class="stats-leftCol">
-            <p>Rounds Played: <span id="roundsplayed"></span></p>
-            <p>Total Bet: <span id="totalbetamount"></span></p>
-            <p>Cards Drawn: <span id="totalcardsdrawn"></span></p>
-            <p>Deck Shuffled: <span id="timesdeckshuffled"></span></p>
-            <p>Amount Won: <span id="totalamountwon"></span></p>
-            <p>Amount Lost: <span id="totalamountlost"></span></p>
+            <p>Сыграно раундов: <span id="roundsplayed"></span></p>
+            <p>Сумма выигрыша: <span id="totalamountwon"></span></p>
+            <p>Сумма проигрыша: <span id="totalamountlost"></span></p>
+            <p hidden="hidden">Общая сумма ставок: <span id="totalbetamount"></span></p>
+            <p hidden="hidden">Карт сыграно: <span id="totalcardsdrawn"></span></p>
+            <p hidden="hidden">Deck Shuffled: <span id="timesdeckshuffled"></span></p>
         </div>
         <div class="stats-rightCol">
-            <p>Rounds Won: <span id="roundswon"></span></p>
-            <p>Rounds Lost: <span id="roundslost"></span></p>
-            <p>Rounds Tied: <span id="roundstied"></span></p>
-            <p>Player 21: <span id="playerblackjacks"></span></p>
-            <p>Dealer 21: <span id="dealerblackjacks"></span></p>
-            <p>Dealer Busts: <span id="dealerbusts"></span></p>
+            <p>Побед: <span id="roundswon"></span></p>
+            <p>Поражений: <span id="roundslost"></span></p>
+            <p>Ничья: <span id="roundstied"></span></p>
+            <p hidden="hidden">Player 21: <span id="playerblackjacks"></span></p>
+            <p hidden="hidden">Dealer 21: <span id="dealerblackjacks"></span></p>
+            <p hidden="hidden">Dealer Busts: <span id="dealerbusts"></span></p>
         </div>
     </div>
 </div>

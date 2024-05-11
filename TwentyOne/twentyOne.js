@@ -66,8 +66,8 @@ let isDealerTurn = false //variable puts program in loop until dealer draws 17 o
 let roundOver = true //variable determines whether START GAME, HIT, and STAND buttons are active
 let cardID = 0 //variable used solely for determining random card number to pull from cardStack
 let bet = 0 //Value for bet, initialized at zero but gets its value as soon as player clicks a bet button
-let statuses = ["Want to play a round?", "HIT, STAND, or DOUBLE DOWN?", "HIT or STAND?", "Dealer Bust! You win!", "You Win!",
-    "Blackjack! You Win!", "PUSH! It's a tie!", "PUSH! Double Blackjack", "Dealer Blackjack!", "You Lose!", "You went over 21! You lose!"]
+let statuses = ["Выбери ставку, чтобы начать!", "HIT?  STAND?  DOUBLE?", "HIT or STAND", "Победа!", "Победа!",
+    "Победа!", "Ничья!", "PUSH! Double Blackjack", "Поражение!", "Поражение!", "Поражение!"]
 let message = statuses[0] //For displaying messages on the UI
 //DOM Object Variable Initialization
 let dealerCardsEl = document.getElementById("dealer-cards-el") //Stores the DOM object dealer cards
@@ -102,7 +102,7 @@ betBn1.textContent = "$" + betBtn1 + " BET"
 betBn2.textContent = "$" + betBtn2 + " BET"
 betBn3.textContent = "$" + betBtn3 + " BET"
 betBn4.textContent = "$" + betBtn4 + " BET"
-pBank.textContent = "Money: $" + money.toFixed(2)
+pBank.textContent = "Баланс: $" + money.toFixed(2)
 
 //Set bet using bet 1 and start the game
 function betButton1() {
@@ -229,8 +229,8 @@ function renderGame() {
         }
     }
     //Render player's current bank account; .toFixed forces 2 decimal points to account for coins
-    pBank.textContent = "Money: $" + money.toFixed(2)
-    cBet.textContent = "Bet: $" + bet //Render the current bet amount (may change during play if double down is pressed)
+    pBank.textContent = "Баланс: $" + money.toFixed(2)
+    cBet.textContent = "Ставка: $" + bet //Render the current bet amount (may change during play if double down is pressed)
     messageEl.textContent = message //Render messages
     if (message === statuses[0] || message === statuses[1] || message === statuses[2]) {
         messageEl.style.color = "black"
@@ -243,8 +243,8 @@ function renderGame() {
     }
 
     //Render player cards, card images, and card value
-    document.getElementById("player-sum-el").textContent = "Value: " + playerSum
-    playerCardsEl.textContent = "Cards: "
+    document.getElementById("player-sum-el").textContent = "Счет: " + playerSum
+    playerCardsEl.textContent = "Карты: "
     for (i = 0; i < playerHand.length; i++) { //This loop loads and prints out the card values from the array as well as loading the card images
         playerCardsEl.textContent += playerHand[i] + " "
         let srcId = "pcard" + i
@@ -259,15 +259,15 @@ function renderGame() {
 
     //Render dealer cards and card value. Logic and structure is identical to the player card render
     if (isDealerTurn === true) {
-        dealerSumEl.textContent = "Value: " + dealerSum
+        dealerSumEl.textContent = "Счет: " + dealerSum
     } else {
         if (dealerSumShow === 11) {
-            dealerSumEl.textContent = "Value: 1/11"
+            dealerSumEl.textContent = "Счет: 1/11"
         } else {
-            dealerSumEl.textContent = "Value: " + dealerSumShow
+            dealerSumEl.textContent = "Счет: " + dealerSumShow
         }
     }
-    dealerCardsEl.textContent = "Cards: "
+    dealerCardsEl.textContent = "Карты: "
     if (isDealerTurn === true) { //Only render all cards if it's the dealer turn. Otherwise only display first card
         for (i = 0; i < dealerHand.length; i++) {
             dealerCardsEl.textContent += dealerHand[i] + " "

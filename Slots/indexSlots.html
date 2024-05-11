@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta name="theme-color" content="#000000"/>
     <meta name="viewport" content="width=480,initial-scale=1, maximum-scale=1"/>
-    <title>SlotMachine</title>
+    <title>All-In Slots</title>
     <link rel="icon" href="./src/img/BAR.png"/>
     <script src="helper.js"></script>
     <script src="srcLoader.js"></script>
@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="container">
-    <h2 class="text-center text-light my-3 gold"><i class="fab fa-phoenix-framework gold"></i>Slot Game</h2>
+    <h2 class="text-center text-light my-3 gold"><i class="fab fa-phoenix-framework gold"></i>All-In Slots</h2>
     <div class="row justify-content-center mb-3">
         <div class="col col-auto">
             <canvas id="slot" width="440" height="240"></canvas>
@@ -24,7 +24,7 @@
         <div class="col col-auto">
             <div class="input-group mb-3 w-75 m-auto">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Current WIN</span>
+                    <span class="input-group-text">Выигрыш</span>
                 </div>
                 <input type="text" class="form-control w-auto" id="cwin" value="0"/>
             </div>
@@ -32,7 +32,7 @@
     </div>
     <div class="row justify-content-center mb-3">
         <div class="col col-auto">
-            <button class="btn btn-danger px-5" id="spin"><i class="fas fa-sync-alt"></i> SPIN</button>
+            <button class="btn btn-danger px-5" id="spin"><i class="fas fa-sync-alt"></i> Крутка</button>
             <button class="btn btn-secondary px-5" id="auto"><i class="fab fa-android"></i> AUTO (OFF)</button>
         </div>
     </div>
@@ -40,7 +40,7 @@
         <div class="col col-auto">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">Credits</span>
+                    <span class="input-group-text">Депозит</span>
                 </div>
                 <input class="form-control" type="number" id="balance" min="1" max="5000" disabled/>
                 <div class="input-group-append">
@@ -51,7 +51,7 @@
         <div class="col col-auto">
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <span class="input-group-text">BETx</span>
+                    <span class="input-group-text">Ставка</span>
                 </div>
                 <input class="form-control" type="number" id="bet" min="1" value="1" max="3"/>
                 <div class="input-group-append">
@@ -80,7 +80,7 @@
                 <i class="fas fa-money-bill-alt"></i> CHECKOUT
             </button>
             <button class="btn btn-primary w-auto" type="button" data-toggle="modal" data-target="#payTable">
-                <i class="fas fa-money-bill-alt"></i> Pay Table
+                <i class="fas fa-money-bill-alt"></i> Таблица коэффицентов
             </button>
         </div>
     </div>
@@ -97,7 +97,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="payTableTitle">Pay Table</h5>
+                <h5 class="modal-title" id="payTableTitle">Таблица коэффицентов</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

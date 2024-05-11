@@ -22,9 +22,15 @@ body {
     background: black !important;
 }
 
+.container{
+    margin-top: 120px;
+
+}
+
 .gold {
     color: gold !important;
 }
+
 .green {
     color: green;
 }

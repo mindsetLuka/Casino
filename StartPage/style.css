@@ -8,7 +8,7 @@ html, body {
     -ms-user-select: none;
     user-select: none;
     background-color: darkgreen;
-};
+}
 
 a, a:visited, a:hover, a:active, a:link {
     color: #fff;
