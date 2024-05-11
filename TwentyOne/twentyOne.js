@@ -1,10 +1,55 @@
+let money = 0;
+
+const LS_KEY_CASH = "cash";
+const INITIAL_VALUE = 1000;
+const playerBalanceStorage = {
+    initializeBalance: function() {
+        if (localStorage.getItem(LS_KEY_CASH) === null) {
+            localStorage.setItem(LS_KEY_CASH, INITIAL_VALUE);
+        }
+        this.displayBalance();
+    },
+
+    getBalance: function() {
+        const balance = localStorage.getItem(LS_KEY_CASH);
+        return balance ? parseInt(balance, 10) : INITIAL_VALUE;
+    },
+
+    setBalance: function(newBalance) {
+        localStorage.setItem(LS_KEY_CASH, newBalance);
+        this.displayBalance();
+    },
+
+    updateBalance: function(amount) {
+        const currentBalance = this.getBalance();
+        const updatedBalance = currentBalance + amount;
+        localStorage.setItem(LS_KEY_CASH, updatedBalance);
+        this.displayBalance();
+    },
+
+    displayBalance: function() {
+        money = this.getBalance();
+    }
+};
+
+playerBalanceStorage.initializeBalance();
+
+window.addEventListener('DOMContentLoaded', () => {
+    playerBalanceStorage.displayBalance();
+});
+
+window.addEventListener('storage', () => {
+    playerBalanceStorage.displayBalance();
+});
+
+
+
 //Adjustable Game Variables
 let betBtn1 = 1 //Value for bet button 1
 let betBtn2 = 5 //Value for bet button 2
 let betBtn3 = 10 //Value for bet button 3
 let betBtn4 = 20 //Value for bet button 4
 let numberOfDecks = 4 //Number of decks to draw from
-let money = 100 //Starting player's bank
 let dealerDrawTo = 17 //The number at which the dealer stays
 //Initialize variables !!DON'T CHANGE ANY VARIABLES BELOW THIS LINE!!
 let cardStack = [] //Holds full stack of cards, to include numberOfDecks below
@@ -102,7 +147,7 @@ function betButton4() {
 //When start game is clicked, empty the player and dealer hands, deal the cards, then display everything
 function startGame() {
     if (roundOver === true) {
-        money -= bet //Take bet amount from player for initial bet
+        playerBalanceStorage.updateBalance(-bet);
         totalBetAmount += bet
         roundsPlayed++
         isDealerTurn = false // Turn off the dealer turn variable at start of each round
@@ -349,7 +394,8 @@ function sumCards() {
             isDealerTurn = true
             message = statuses[7]
             roundOver = true //Mark the round over
-            money += bet //Put the bet back in the player's bank
+            
+            playerBalanceStorage.updateBalance(bet);
             playerBlackjacks++ //Total player blackjacks + 1
             dealerBlackjacks++ //Total dealer blackjacks + 1
             roundsTied++ //Total rounds tied + 1
@@ -366,7 +412,7 @@ function sumCards() {
         } else if (playerSum === 21) { //Player Blackjack
             message = statuses[5]
             roundOver = true //Mark the round over
-            money += bet + ((bet / 2) * 3) //Add 3:2 payout to player's money
+            playerBalanceStorage.updateBalance(bet + ((bet / 2) * 3));
             //Stats tracking
             playerBlackjacks++ //Total player blackjacks + 1
             roundsWon++ //Total rounds won + 1
@@ -402,7 +448,7 @@ function sumCards() {
         roundsWon++ //add 1 to rounds won
         dealerBusts++ //add 1 to dealer busts
         totalAmountWon += bet * 2 //add bet to total amount won
-        money += bet * 2 //double bet money and return to player's bank
+        playerBalanceStorage.updateBalance(bet * 2);
         return
     }
 
@@ -411,7 +457,7 @@ function sumCards() {
         if (playerSum > dealerSum) { //Player's total is greater than dealer. Player wins
             message = statuses[4]
             roundOver = true //Mark round as over
-            money += bet * 2 //Return doubled bet to player's money
+            playerBalanceStorage.updateBalance(bet * 2);
             //Stats tracking
             totalAmountWon += bet * 2 //Add bet to total amount won
             roundsWon++ //Add 1 to rounds won
@@ -426,7 +472,7 @@ function sumCards() {
         } else if (playerSum === dealerSum) { //Totals are the same. It's a push/tie.
             message = statuses[6]
             roundOver = true //Mark round as over
-            money += bet //Return the bet to the player since it's a tie
+            playerBalanceStorage.updateBalance(bet);    
             //Stats tracking
             roundsTied++ //Add 1 to rounds tied
             return
@@ -465,7 +511,7 @@ function doubleDown() {
     if (playerHand.length === 2) {
         if (money - bet >= 0) {
             totalBetAmount += bet //add the bet amount to total bet amount stat
-            money -= bet //subtract the bet amount from player's money again
+            playerBalanceStorage.updateBalance(-bet);                
             bet += bet //doubles the bet
             isDealerTurn = true //marks the player's turn over
             hitCard() //draws a card for the player, which then renders the game and starts the stand card logic (dealer turn)

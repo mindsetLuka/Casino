@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Заходи в наше казино</title>
+</head>
+<body>
+    <div class="header">
+        <h1>КА$$$iNOOO ALL IN</h1>
+    </div>
+    <img src="../assets/gambling_core.jpeg" alt="">
+    <ul>
+        <li><a href="../Roulette/indexRoulette.html">Рулетка</a></li>
+        <li><a href="../Slots/indexSlots.html">Слоты</a></li>
+        <li><a href="../TwentyOne/indexTwentyOne.html">Очко</a></li>
+    </ul>
+    <p>Баланс: <span id="balance"></span></p>
+    <button onclick="playerBalanceStorage.updateBalance(1000)">Пополнить баланс +1000</button>
+    <script src="balance.js"></script>
+</body>
+</html>
