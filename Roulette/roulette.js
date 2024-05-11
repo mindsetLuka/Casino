@@ -1,4 +1,46 @@
-let bankValue = 1000;
+let bankValue = 0;
+const LS_KEY_CASH = "cash";
+const INITIAL_VALUE = 1000;
+const playerBalanceStorage = {
+    initializeBalance: function() {
+        if (localStorage.getItem(LS_KEY_CASH) === null) {
+            localStorage.setItem(LS_KEY_CASH, INITIAL_VALUE);
+        }
+        this.displayBalance();
+    },
+
+    getBalance: function() {
+        const balance = localStorage.getItem(LS_KEY_CASH);
+        return balance ? parseInt(balance, 10) : INITIAL_VALUE;
+    },
+
+    setBalance: function(newBalance) {
+        localStorage.setItem(LS_KEY_CASH, newBalance);
+        this.displayBalance();
+    },
+
+    updateBalance: function(amount) {
+        const currentBalance = this.getBalance();
+        const updatedBalance = currentBalance + amount;
+        localStorage.setItem(LS_KEY_CASH, updatedBalance);
+        this.displayBalance();
+    },
+
+    displayBalance: function() {
+        bankValue = this.getBalance();
+    }
+};
+
+playerBalanceStorage.initializeBalance();
+
+window.addEventListener('DOMContentLoaded', () => {
+    playerBalanceStorage.displayBalance();
+});
+
+window.addEventListener('storage', () => {
+    playerBalanceStorage.displayBalance();
+});
+
 let currentBet = 0;
 let wager = 5;
 let lastWager = 0;
@@ -19,7 +61,6 @@ let wheel = document.getElementsByClassName('wheel')[0];
 let ballTrack = document.getElementsByClassName('ballTrack')[0];
 
 function resetGame() {
-    bankValue = 1000;
     currentBet = 0;
     wager = 5;
     bet = [];
@@ -382,7 +423,7 @@ function buildBettingBoard() {
                 }
                 wager = parseInt(chip.childNodes[0].innerText);
             } else {
-                bankValue = bankValue + currentBet;
+                playerBalanceStorage.updateBalance(currentBet)
                 currentBet = 0;
                 document.getElementById('bankSpan').innerText = '' + bankValue.toLocaleString("en-GB") + '';
                 document.getElementById('betSpan').innerText = '' + currentBet.toLocaleString("en-GB") + '';
@@ -451,7 +492,7 @@ function setBet(e, n, t, o) {
             };
             container.append(spinBtn);
         }
-        bankValue = bankValue - wager;
+        playerBalanceStorage.updateBalance(-wager)
         currentBet = currentBet + wager;
         document.getElementById('bankSpan').innerText = '' + bankValue.toLocaleString("en-GB") + '';
         document.getElementById('betSpan').innerText = '' + currentBet.toLocaleString("en-GB") + '';
@@ -501,7 +542,7 @@ function spin() {
             for (i = 0; i < bet.length; i++) {
                 var numArray = bet[i].numbers.split(',').map(Number);
                 if (numArray.includes(winningSpin)) {
-                    bankValue = (bankValue + (bet[i].odds * bet[i].amt) + bet[i].amt);
+                    playerBalanceStorage.updateBalance((bet[i].odds * bet[i].amt) + bet[i].amt);
                     winValue = winValue + (bet[i].odds * bet[i].amt);
                     betTotal = betTotal + bet[i].amt;
                 }
@@ -580,6 +621,7 @@ function removeBet(e, n, t, o) {
             if (bet[i].amt != 0) {
                 wager = (bet[i].amt > wager) ? wager : bet[i].amt;
                 bet[i].amt = bet[i].amt - wager;
+
                 bankValue = bankValue + wager;
                 currentBet = currentBet - wager;
                 document.getElementById('bankSpan').innerText = '' + bankValue.toLocaleString("en-GB") + '';
