@@ -15,7 +15,7 @@ const playerBalanceStorage = {
 
   getBalance: function () {
     const balance = localStorage.getItem(LS_KEY_CASH);
-    return balance ? parseInt(balance, 10) : INITIAL_VALUE;
+    return balance ? parseInt(balance, 10) + "₽" : INITIAL_VALUE + "₽";
   },
 
   setBalance: function (newBalance) {

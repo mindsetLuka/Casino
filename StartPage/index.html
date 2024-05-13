@@ -4,21 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../Slots/src/img/BAR.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rationale&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Golos&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Заходи в наше казино</title>
 </head>
 <body>
-    <div class="header">
-        <h1>КА$$$iNOOO ALL IN</h1>
+    <header>
+        <div class="logo">
+            <img src="assets/all_in.svg" alt="all_in">
+        </div>
+        <div class="balance_block">
+            <button onclick="playerBalanceStorage.updateBalance(1000)" class="top_up_balance">
+                Пополнить
+            </button>
+            <div id="balance"></div>
+        </div>
+    </header>
+    <main>
+        <div class="title">
+            <div class="all_in">All in</div>
+            <div class="casino">CASINO</div>
+        </div>
+        <div class="options_block">
+            <div class="options">
+                <div class="options_title">
+                    Твои любимые игры на ПК
+                </div>
+                <div class="options_choices">
+                    <a href="../Slots/indexSlots.html">
+                        <div class="option">
+                            <div class="slots choice"></div>
+                            <div class="choice_title">
+                                Слоты
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <a href="../Roulette/indexRoulette.html">
+                        <div class="option">
+                            <div class="roulette choice"></div>
+                            <div class="choice_title">
+                                Рулетка
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="../TwentyOne/indexTwentyOne.html">
+                        <div class="option">    
+                            <div class="twenty-one choice"></div>
+                            <div class="choice_title">
+                                Двадцать одно
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div id="balanceModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Введите сумму для пополнения баланса:</p>
+          <input type="number" id="balanceAmount" placeholder="Введите сумму">
+          <button id="confirmBalance">Подтвердить</button>
+        </div>
     </div>
-    <img src="../assets/gambling_core.jpeg" alt="">
-    <ul>
-        <li><a href="../Roulette/indexRoulette.html">Рулетка</a></li>
-        <li><a href="../Slots/indexSlots.html">Слоты</a></li>
-        <li><a href="../TwentyOne/indexTwentyOne.html">Очко</a></li>
-    </ul>
-    <p>Баланс: <span id="balance"></span></p>
-    <button onclick="playerBalanceStorage.updateBalance(1000)">Пополнить баланс +1000</button>
     <script src="balance.js"></script>
+    <script src="addBalance.js"></script>
 </body>
 </html>

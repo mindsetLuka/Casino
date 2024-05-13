@@ -7,9 +7,235 @@ html, body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    background-color: darkgreen;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 a, a:visited, a:hover, a:active, a:link {
     color: #fff;
 }
+
+body {
+    color: #fff;
+    width: 100%;
+    height: 100vh;
+    background: rgba(22, 11, 11, 1) url(assets/smoke.png) 100% 50%/contain no-repeat;
+}
+
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 47px 66px 47px 66px;
+}
+
+.balance_block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#balance {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Golos', sans-serif;
+}
+
+#balance::before {
+    content: url(assets/card.svg);
+    width: 20px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+.top_up_balance {
+    height: 40px;
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(45deg, rgba(224,1,9,1) 0%, rgba(122,1,5,1) 100%);
+    padding: 2.5px 12px;
+    text-align: center;
+    transition: 0.5s;
+    border-radius: 5px;
+    color: #fff;
+    border: 0;
+    margin-right: 22px;
+}
+
+.title {
+    margin-left: 190px;
+    text-shadow: -8px 8px 25px rgba(255, 46, 46, 0.44);
+    color: rgba(217, 217, 217, 1);
+    font-family: 'Great Vibes', cursive;
+}
+
+.all_in {
+    font-size: 176.56px;
+}
+
+.casino {
+    font-size: 101.86px;
+    font-family: 'Rationale', sans-serif;
+}
+
+.options_block {
+    margin: 21px 0 0 66px;
+    display: flex;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.options_title {
+    color: rgba(224, 1, 9, 1);
+    text-shadow: -8px 8px 25px rgba(255, 46, 46, 0.44);
+    font-size: 65.59px;
+    font-weight: 700;
+}
+
+.options_choices {
+    margin: 70px 0 0 0;
+    display: flex;
+    width: 710px;
+    justify-content: space-between;
+}
+
+.choice {
+    border-radius: 13.73px;
+    width: 151.06px;
+    height: 148.57px;
+}
+
+.slots {
+    background: url(assets/slots.svg) center center no-repeat, linear-gradient(90deg, rgba(135, 0, 0, 0.8) 0%, rgba(25, 10, 5, 0.8) 100%);
+}
+
+.roulette {
+    background: url(assets/roulette.svg) center center no-repeat, linear-gradient(90deg, rgba(135, 0, 0, 0.8) 0%, rgba(25, 10, 5, 0.8) 100%);
+}
+
+.twenty-one {
+    background: url(assets/twenty_one.svg) center center no-repeat, linear-gradient(90deg, rgba(135, 0, 0, 0.8) 0%, rgba(25, 10, 5, 0.8) 100%);
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    font-size: 24.97px;
+    font-weight: 700;
+    align-items: center;
+}
+
+.choice_title {
+    margin-top: 15px;
+    font-family: 'Rationale', sans-serif;
+
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 60%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 46, 46, 0.88);
+    color: white;
+    cursor: pointer;
+  }
