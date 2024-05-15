@@ -1,6 +1,6 @@
 var modal = document.getElementById("balanceModal");
 var btn = document.querySelector(".top_up_balance");
-var span = document.getElementsByClassName("close")[0];
+var span = document.querySelector(".close");
 var confirmBtn = document.getElementById("confirmBalance");
 
 btn.onclick = function() {
@@ -13,6 +13,6 @@ span.onclick = function() {
 
 confirmBtn.onclick = function() {
   var balanceAmount = document.getElementById("balanceAmount").value;
-  // ну хз хз че делать у меня лапки
+  playerBalanceStorage.updateBalance(+balanceAmount);
   modal.style.display = "none";
 }
