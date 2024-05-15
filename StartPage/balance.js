@@ -1,6 +1,6 @@
 function displayBalanceStartPage() {
   const balanceSpan = document.getElementById("balance");
-  balanceSpan.textContent = playerBalanceStorage.getBalance();
+  balanceSpan.textContent = playerBalanceStorage.getBalance() + "₽";
 }
 
 const LS_KEY_CASH = "cash";
@@ -15,7 +15,7 @@ const playerBalanceStorage = {
 
   getBalance: function () {
     const balance = localStorage.getItem(LS_KEY_CASH);
-    return balance ? parseInt(balance, 10) + "₽" : INITIAL_VALUE + "₽";
+    return balance ? parseInt(balance, 10) : INITIAL_VALUE;
   },
 
   setBalance: function (newBalance) {

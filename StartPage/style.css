@@ -239,3 +239,7 @@ header {
     color: white;
     cursor: pointer;
   }
+
+  #balanceModal {
+    display: none;
+  }
